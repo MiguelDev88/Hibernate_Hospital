@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="POJOS.C_Medico" table="Medicos">
+        <id name="codigo" column="codigo"/>
+        <property name="nombre" column="nombre"/>
+        <property name="especialidad" column="especialidad"/>
+        <property name="clinica" column="clinica"/>
+        <set name="enfermos" table="Medicos_Enfermos" cascade="save-update" >
+            <key column="medico"/>
+            <many-to-many class="POJOS.C_Enfermo" column="enfermo"/> 
+        </set>
+    </class>
+</hibernate-mapping>

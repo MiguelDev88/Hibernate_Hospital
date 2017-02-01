@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="POJOS.C_Enfermo" table="Enfermos">
+        <id name="codigoSeguro" column="codigoSeguro">
+            <generator class="foreign">
+                <param name="property">seguro</param>
+            </generator>
+        </id>
+        <property name="dni" column="dni"/>
+        <property name="nombre" column="nombre"/>
+        <property name="patologia" column="patologia"/>
+        <set name="medicos" table="Medicos_Enfermos" cascade="save-update" inverse="true" >
+            <key column="enfermo"/>
+            <many-to-many class="POJOS.C_Medico" column="medico" />
+        </set>
+        <one-to-one name="seguro" class="POJOS.C_Seguro" cascade="all" constrained="true"/>
+        
+    </class>
+</hibernate-mapping>
